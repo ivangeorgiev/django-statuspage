@@ -43,14 +43,15 @@
 <li><p><a class="reference internal" href="#django" id="id2">Django</a></p>
 <ul>
 <li><p><a class="reference internal" href="#document-django-project-using-sphinx" id="id3">Document Django project using Sphinx</a></p></li>
-<li><p><a class="reference internal" href="#create-django-project" id="id4">Create Django project</a></p></li>
-<li><p><a class="reference internal" href="#create-basic-django-app" id="id5">Create basic Django App:</a></p></li>
-<li><p><a class="reference internal" href="#further-reading" id="id6">Further reading</a></p></li>
+<li><p><a class="reference internal" href="#host-your-sphinx-documentation-on-github" id="id4">Host Your Sphinx Documentation on Github</a></p></li>
+<li><p><a class="reference internal" href="#create-django-project" id="id5">Create Django project</a></p></li>
+<li><p><a class="reference internal" href="#create-basic-django-app" id="id6">Create basic Django App:</a></p></li>
+<li><p><a class="reference internal" href="#further-reading" id="id7">Further reading</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#continuous-integration-ci" id="id7">Continuous Integration (CI)</a></p>
+<li><p><a class="reference internal" href="#continuous-integration-ci" id="id8">Continuous Integration (CI)</a></p>
 <ul>
-<li><p><a class="reference internal" href="#codecov" id="id8">Codecov</a></p></li>
+<li><p><a class="reference internal" href="#codecov" id="id9">Codecov</a></p></li>
 </ul>
 </li>
 </ul>
@@ -74,6 +75,22 @@
 <p>Further reading:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.freecodecamp.org/news/sphinx-for-django-documentation-2454e924b3bc/">How to document your Django project using the Sphinx tool</a></p></li>
+</ul>
+</section>
+<section id="host-your-sphinx-documentation-on-github">
+<h3><a class="toc-backref" href="#table-of-contents">Host Your Sphinx Documentation on Github</a><a class="headerlink" href="#host-your-sphinx-documentation-on-github" title="Permalink to this headline">¶</a></h3>
+<p>Create an empty branch for Github pages:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git switch --orphan gh-pages</span>
+<span class="go">git commit --allow-empty -m &quot;Initial commit on gh-pages&quot;</span>
+<span class="go">git push -u origin gh-pages</span>
+</pre></div>
+</div>
+<p>Default static files directory name <code class="docutils literal notranslate"><span class="pre">_static</span></code> is prefixed with underscore.
+Github publishes pages through <code class="docutils literal notranslate"><span class="pre">jekyll</span></code> which ignores directories which names
+start with underscore. Just add empty <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file in the docs directory or
+the root of the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p>
+<p>Further reading:</p>
+<ul class="simple">
 <li><p><a class="reference external" href="https://python.plainenglish.io/how-to-host-your-sphinx-documentation-on-github-550254f325ae">How to Host Your Sphinx Documentation on GitHub</a></p></li>
 </ul>
 </section>
