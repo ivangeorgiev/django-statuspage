@@ -1,6 +1,13 @@
 Django Status Page Plugin
 =========================
 
+.. image:: https://app.travis-ci.com/ivangeorgiev/django-statuspage.svg?branch=main
+    :target: https://app.travis-ci.com/ivangeorgiev/django-statuspage
+
+.. image:: https://readthedocs.org/projects/django-statuspage/badge/?version=latest
+    :target: https://django-statuspage.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 System Status Page in Django
 
 Django Status Page documentation is available on `Github pages <https://ivangeorgiev.github.io/django-statuspage/>`_ as well as on `Read the docs <https://django-statuspage.readthedocs.io/en/latest/>`_. 
