@@ -10,6 +10,10 @@ Welcome to Django Status Page's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   api
+   styleguide
+   howto
+   todo
 
 
 Indices and tables

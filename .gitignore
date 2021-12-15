@@ -1,6 +1,7 @@
-.venv*
-.vscode
+.venv*/
+.vscode/
 .dccache
+.dev/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
