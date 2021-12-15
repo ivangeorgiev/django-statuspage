@@ -35,7 +35,7 @@ Django Status Page uses `pytest <https://docs.pytest.org/>`_ as test framework. 
 
 .. code-block:: console
 
-    $ pytest
+    $ pytest src/djangostatuspage/tests
 
 
 Build Documentation

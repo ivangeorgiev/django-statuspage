@@ -69,17 +69,9 @@ Group related test cases into a test class. For example, to test the ``camel_cas
     class TestCamelCaseSplit:
         """Test cases for camel_case_split function"""
 
-        @pytest.mark.parametrize("input,expected", [
-                ('PascalCase', ['Pascal', 'Case']),
-                ('camelCase', ['camel', 'Case']),
-                ('Ucfirst', ['Ucfirst']),
-                ('lowercase', ['lowercase']),
-                ('', ['']),
-                ('ABBR', ['A','B','B','R']),
-        ])
-        def test_called_with(self, input, expected):
-            result = shortcuts.camel_case_split(input)
-            assert result == expected
+        def test_called_with(self):
+            result = shortcuts.camel_case_split('PascalCase')
+            assert result == ['Pascal', 'Case']
 
 Define test type for each test case
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,6 +96,9 @@ To mark individual test cases, use the ``@pytest.mark`` decorator:
     def test_addition():
         assert 2+3 == 5
 
+If ``@pytest.mark`` decorator is applied to a class, all the test cases from the class are marked with the
+mark.
+
 To mark all tests in a module define pytestmark module variable and assign to a mark or 
 a list of marks:
 
@@ -114,6 +109,7 @@ a list of marks:
 
     pytestmark = [pytest.mark.unit, pytest.mark.compat]  # All test cases in the module 
                                                          # are marked as unit and compat test cases
+
 
 By default ``pytest`` runs only unit tests as specified in ``pytest.ini``.
 
