@@ -49,3 +49,38 @@ or in the context of Django project:
 
     $ python manage.py startapp djangostatuspage
 
+Continuous Integration (CI)
+---------------------------
+
+Codecov
+~~~~~~~~
+
+For `codecov <https://app.codecov.io/gh>` integration, CI tool needs to provide XML report from unit test execution.
+
+No token is required for public repositories.
+
+For example you need to use following in your ``.travis.yml``:
+
+.. code-block:: yml
+
+    language: python
+    python:
+      - "3.8"
+      - "3.9"
+      # - "3.10" # Travis fails to install Python 3.10
+      - "nightly"  # nightly build
+
+    before_install:
+      - pip install codecov
+
+    after_success:
+      - codecov
+
+    install:
+      - pip install -r requirements.txt
+
+    script:
+      - pytest src/djangostatuspage/tests --cov-report xml
+
+
+

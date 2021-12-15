@@ -4,6 +4,9 @@ Django Status Page Plugin
 .. image:: https://app.travis-ci.com/ivangeorgiev/django-statuspage.svg?branch=main
     :target: https://app.travis-ci.com/ivangeorgiev/django-statuspage
 
+.. image:: https://codecov.io/gh/ivangeorgiev/django-statuspage/branch/main/graph/badge.svg?token=CFB25XTDW3
+    :target: https://codecov.io/gh/ivangeorgiev/django-statuspage
+
 .. image:: https://readthedocs.org/projects/django-statuspage/badge/?version=latest
     :target: https://django-statuspage.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
