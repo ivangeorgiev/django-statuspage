@@ -3,6 +3,8 @@ Django Status Page Plugin
 
 System Status Page in Django
 
+Django Status Page documentation is available on `Github pages <https://ivangeorgiev.github.io/django-statuspage/>`_ as well as on `Read the docs <https://django-statuspage.readthedocs.io/en/latest/>`_. 
+
 Installation - Development Environment
 --------------------------------------
 
@@ -32,7 +34,7 @@ Django Status Page uses `pytest <https://docs.pytest.org/>`_ as test framework. 
 Build Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-Documentation is stored in the ``docs`` directory. It is written using 
+Documentation sources are stored in the ``docs`` directory. It is written using 
 `reStructuredText <https://docutils.sourceforge.io/rst.html>`_ and uses `Sphinx <https://www.sphinx-doc.org/en/master/>`_ to build user documentation.
 
 To build documentation use the ``make`` script from the ``docs`` directory:
