@@ -69,17 +69,9 @@ Group related test cases into a test class. For example, to test the ``camel_cas
     class TestCamelCaseSplit:
         """Test cases for camel_case_split function"""
 
-        @pytest.mark.parametrize("input,expected", [
-                ('PascalCase', ['Pascal', 'Case']),
-                ('camelCase', ['camel', 'Case']),
-                ('Ucfirst', ['Ucfirst']),
-                ('lowercase', ['lowercase']),
-                ('', ['']),
-                ('ABBR', ['A','B','B','R']),
-        ])
-        def test_called_with(self, input, expected):
-            result = shortcuts.camel_case_split(input)
-            assert result == expected
+        def test_called_with(self):
+            result = shortcuts.camel_case_split('PascalCase')
+            assert result == ['Pascal', 'Case']
 
 Define test type for each test case
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,6 +96,9 @@ To mark individual test cases, use the ``@pytest.mark`` decorator:
     def test_addition():
         assert 2+3 == 5
 
+If ``@pytest.mark`` decorator is applied to a class, all the test cases from the class are marked with the
+mark.
+
 To mark all tests in a module define pytestmark module variable and assign to a mark or 
 a list of marks:
 
@@ -114,6 +109,7 @@ a list of marks:
 
     pytestmark = [pytest.mark.unit, pytest.mark.compat]  # All test cases in the module 
                                                          # are marked as unit and compat test cases
+
 
 By default ``pytest`` runs only unit tests as specified in ``pytest.ini``.
 
@@ -148,17 +144,39 @@ To learn more about ``pytest``'s custom marks:
 - `Working with custom markers <https://docs.pytest.org/en/6.2.x/example/markers.html>`_
 
 
-Git pre-push hooks
-~~~~~~~~~~~~~~~~~~~~
+Test Coverage
+~~~~~~~~~~~~~
 
-Before pushing code to the remote repository all unit tests should pass. 
-To automate this, modify the Git pre-push hook in the ``.git/hooks/pre-push`` script:
+Measure the test coverage on each test execution. Add corresponding options to ``pytest.ini``:
+
+.. code-block:: ini
+
+    # pytest.ini
+    [pytest]
+    addopts = 
+        -m "unit"
+        --cov djangostatuspage
+        --cov-report term
+        --cov-report html
+
+
+Git push quality gates
+~~~~~~~~~~~~~~~~~~~~~~
+
+Before pushing code to the remote repository make sure that all quality requirements are met:
+
+- All unit tests pass
+- Minimal unit test coverage is 80%
+
+To automate these checks, modify the Git pre-push hook in the ``.git/hooks/pre-push`` script:
 
 .. code-block:: bash
 
     #!/bin/sh
 
     source .venv310/Scripts/activate
-    pytest or exit 1
+    ./.dev/set_env.sh
+    pytest --rootdir=src/djangostatuspage/tests || exit 1
+    coverage report --fail-under=80 || exit 1
     exit 0
 
