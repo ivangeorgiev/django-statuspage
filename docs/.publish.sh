@@ -7,7 +7,7 @@ make clean
 make html
 cd _build
 git clone -b gh-pages $REPO_URL .build
-cp -r _build/html/* .build/.
+cp -r html/* .build/.
 cd .build
 git add .
 git commit -m "publish"

@@ -1,0 +1,2 @@
+from djangostatuspage import models
+

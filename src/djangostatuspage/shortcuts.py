@@ -11,11 +11,21 @@ def camel_case_split(s: str):
 
     return [s[x: y] for x, y in zip(start_idx, start_idx[1:])]
 
+def get_enum_choices(enum):
+    """Get list of choices suitable for Django Model from enum class"""
+    return [(choice.value, make_verbose_name(choice.name)) for choice in enum]
+
+
+def make_verbose_name(name):
+    name = ' '.join(multi_case_split(name.lower())).capitalize()
+    return name
+
+
 def multi_case_split(s: str, split_pattern='[_-]'):
     camel_split = camel_case_split(s)
-    splits = itertools.chain(*map(lambda s: re.split(split_pattern, s), camel_split))
+    splits = itertools.chain(*[re.split(split_pattern, s) for s in camel_split])
     non_blank_splits = list(filter(len, splits))
-    return list(non_blank_splits) if len(non_blank_splits) > 0 else ['']
+    return non_blank_splits if len(non_blank_splits) > 0 else ['']
 
 
 def utc_now():

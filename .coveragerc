@@ -1,0 +1,19 @@
+[run]
+omit = 
+        **/migrations/*
+        */asgi.py
+        */wsgi.py
+        */urls*.py
+        **/test_*
+        **/management/*
+        src/djangostatuspage/admin.py
+        src/djangostatuspage/apps.py
+        src/djangostatuspage/asgi.py
+        src/djangostatuspage/tests.py
+        src/djangostatuspage/tests/*
+
+source =
+    src/
+
+[html]
+directory = htmlcov

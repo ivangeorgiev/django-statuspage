@@ -12,14 +12,6 @@ class AlertSeverity(enum.Enum):
 
 class IncidentOrigin(enum.Enum):
     MANUAL = 'manual'
-
-    @classmethod
-    def get_choices(cls):
-        def _make_choice(e):
-            e.name.lower()
-        return [(c.value, c.name) for c in cls]
-
-
 class BaseModel(models.Model):
     """ BaseModel adds information on creation and modification times of the object. """
     created_at = models.DateTimeField(auto_now_add=True)
@@ -31,7 +23,7 @@ class BaseModel(models.Model):
 
 class Incident(BaseModel):
     incident_id = models.BigAutoField(primary_key=True)
-    origin = models.CharField(max_length=32, blank=True, null=True, choices=IncidentOrigin.get_choices())
+    origin = models.CharField(max_length=32, blank=True, null=True, choices=shortcuts.get_enum_choices(IncidentOrigin))
     id_at_origin = models.CharField(max_length=255, blank=True, null=True)
     technical_details = models.TextField(blank=True, null=True, default='')
     is_hidden = models.BooleanField(default=False)

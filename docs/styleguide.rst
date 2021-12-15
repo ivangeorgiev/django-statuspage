@@ -148,17 +148,39 @@ To learn more about ``pytest``'s custom marks:
 - `Working with custom markers <https://docs.pytest.org/en/6.2.x/example/markers.html>`_
 
 
-Git pre-push hooks
-~~~~~~~~~~~~~~~~~~~~
+Test Coverage
+~~~~~~~~~~~~~
 
-Before pushing code to the remote repository all unit tests should pass. 
-To automate this, modify the Git pre-push hook in the ``.git/hooks/pre-push`` script:
+Measure the test coverage on each test execution. Add corresponding options to ``pytest.ini``:
+
+.. code-block:: ini
+
+    # pytest.ini
+    [pytest]
+    addopts = 
+        -m "unit"
+        --cov djangostatuspage
+        --cov-report term
+        --cov-report html
+
+
+Git push quality gates
+~~~~~~~~~~~~~~~~~~~~~~
+
+Before pushing code to the remote repository make sure that all quality requirements are met:
+
+- All unit tests pass
+- Minimal unit test coverage is 80%
+
+To automate these checks, modify the Git pre-push hook in the ``.git/hooks/pre-push`` script:
 
 .. code-block:: bash
 
     #!/bin/sh
 
     source .venv310/Scripts/activate
-    pytest or exit 1
+    ./.dev/set_env.sh
+    pytest --rootdir=src/djangostatuspage/tests || exit 1
+    coverage report --fail-under=80 || exit 1
     exit 0
 
