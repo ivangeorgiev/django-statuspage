@@ -71,6 +71,8 @@ class IncidentUpdate(BaseModel):
             related_name='incident_update_updated_set'
     )
 
+    def __str__(self):
+        return config.STR_TEMPLATE_INCIDENT_UPDATE.format(update=self)
 
 
 class System(BaseModel):
