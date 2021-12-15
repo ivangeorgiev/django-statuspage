@@ -56,7 +56,7 @@ or in the context of Django project:
 Further reading
 ~~~~~~~~~~~~~~~~
 
-- `Django Admin Cookbook<https://books.agiliq.com/projects/django-admin-cookbook/en/latest/index.html>`_
+- `Django Admin Cookbook <https://books.agiliq.com/projects/django-admin-cookbook/en/latest/index.html>`_
 
 Continuous Integration (CI)
 ---------------------------
