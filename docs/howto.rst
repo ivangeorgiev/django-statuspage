@@ -1,6 +1,9 @@
 How-To
 ======
 
+.. contents:: Table of contents
+    :backlinks: top
+
 
 Django
 -------
@@ -23,6 +26,28 @@ Add at the beginning of the ``docs/conf.py`` following:
 Further reading:
 
 - `How to document your Django project using the Sphinx tool <https://www.freecodecamp.org/news/sphinx-for-django-documentation-2454e924b3bc/>`_
+
+Host Your Sphinx Documentation on Github
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Create an empty branch for Github pages:
+
+.. code-block:: console
+
+    git switch --orphan gh-pages
+    git commit --allow-empty -m "Initial commit on gh-pages"
+    git push -u origin gh-pages
+
+Default static files directory name ``_static`` is prefixed with underscore.
+Github publishes pages through ``jekyll`` which ignores directories which names 
+start with underscore. Just add empty ``.nojekyll`` file in the docs directory or
+the root of the ``gh-pages`` branch.
+
+Further reading:
+
+- `How to Host Your Sphinx Documentation on GitHub <https://python.plainenglish.io/how-to-host-your-sphinx-documentation-on-github-550254f325ae>`_
+
 
 Create Django project
 ~~~~~~~~~~~~~~~~~~~~~
@@ -49,6 +74,12 @@ or in the context of Django project:
 
     $ python manage.py startapp djangostatuspage
 
+
+Further reading
+~~~~~~~~~~~~~~~~
+
+- `Django Admin Cookbook <https://books.agiliq.com/projects/django-admin-cookbook/en/latest/index.html>`_
+
 Continuous Integration (CI)
 ---------------------------
 
@@ -61,7 +92,7 @@ No token is required for public repositories.
 
 For example you need to use following in your ``.travis.yml``:
 
-.. code-block:: yml
+.. code-block:: yaml
 
     language: python
     python:
