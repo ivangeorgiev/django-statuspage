@@ -3,8 +3,31 @@ Django Status Page Plugin
 
 System Status Page in Django
 
-Build
------
+Installation - Development Environment
+--------------------------------------
+
+To install the package, you need to checkout the source repository and use ``pip`` to install 
+dependencies:
+
+.. code-block:: console
+
+    $ git clone https://github.com/ivangeorgiev/django-statuspage
+    $ cd django-statuspage
+    $ pip install -U -r requirements.txt
+
+
+Build and Test
+--------------
+
+Test
+~~~~
+
+Django Status Page uses `pytest <https://docs.pytest.org/>`_ as test framework. To execute the tests run the ``pytest`` command:
+
+.. code-block:: console
+
+    $ pytest
+
 
 Build Documentation
 ~~~~~~~~~~~~~~~~~~~
@@ -21,15 +44,15 @@ To build documentation use the ``make`` script from the ``docs`` directory:
 
 The output will be stored in the ``docs/_build/html`` directory.
 
-You can also build and publish the Github pages:
+You can also build and publish the Github pages using the ``.publish.sh`` script:
 
 .. code-block:: console
 
     cd docs
     . .publish.sh
 
-The script will build the HTML documentation, checkout the Github pages branch into ``docs/_build/.build``
-directory and push changes to Github.
+The script will build the HTML documentation, checkout the Github pages branch into the ``docs/_build/.build``
+directory, stage and push the changes to Github.
 
 
 
