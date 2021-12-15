@@ -70,7 +70,7 @@ No token is required for public repositories.
 
 For example you need to use following in your ``.travis.yml``:
 
-.. code-block:: yml
+.. code-block:: yaml
 
     language: python
     python:

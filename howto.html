@@ -111,24 +111,24 @@
 <p>For <cite>codecov &lt;https://app.codecov.io/gh&gt;</cite> integration, CI tool needs to provide XML report from unit test execution.</p>
 <p>No token is required for public repositories.</p>
 <p>For example you need to use following in your <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code>:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>language: python
-python:
-  - &quot;3.8&quot;
-  - &quot;3.9&quot;
-  # - &quot;3.10&quot; # Travis fails to install Python 3.10
-  - &quot;nightly&quot;  # nightly build
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="nt">python</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;3.8&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;3.9&quot;</span>
+  <span class="c1"># - &quot;3.10&quot; # Travis fails to install Python 3.10</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;nightly&quot;</span>  <span class="c1"># nightly build</span>
 
-before_install:
-  - pip install codecov
+<span class="nt">before_install</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install codecov</span>
 
-after_success:
-  - codecov
+<span class="nt">after_success</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">codecov</span>
 
-install:
-  - pip install -r requirements.txt
+<span class="nt">install</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install -r requirements.txt</span>
 
-script:
-  - pytest src/djangostatuspage/tests --cov-report xml
+<span class="nt">script</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pytest src/djangostatuspage/tests --cov-report xml</span>
 </pre></div>
 </div>
 </section>
