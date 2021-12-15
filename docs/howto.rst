@@ -78,7 +78,7 @@ or in the context of Django project:
 Further reading
 ~~~~~~~~~~~~~~~~
 
-- `Django Admin Cookbook <https://books.agiliq.com/projects/django-admin-cookbook/en/latest/index.html>`_
+- `Django Admin Cookbook <https://books.agiliq.com/projects/django-admin-cookbook/en/latest/index.html>`_ and `sources <https://github.com/agiliq/django-admin-cookbook>`_ on Github
 
 Continuous Integration (CI)
 ---------------------------

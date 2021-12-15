@@ -180,3 +180,22 @@ To automate these checks, modify the Git pre-push hook in the ``.git/hooks/pre-p
     coverage report --fail-under=80 || exit 1
     exit 0
 
+File layout
+~~~~~~~~~~~~
+
+Place tests in ``tests`` module under the application package
+
+1. Create application
+2. Create ``tests`` directory
+3. Create Django project for tests
+4. Configure tests
+
+Test Django Applications with Database
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Use in-memory database
+2. Use pytest-django
+3. Mark test cases or test class which use database with ``@pytest.mark.django_db``
+
+
+
