@@ -12,7 +12,7 @@ pytestmark = [pytest.mark.unit]
 
 class TestCamelCaseSplit:
     """Test cases for camel_case_split function"""
-    @pytest.mark.parametrize("data,expected", [
+    @pytest.mark.parametrize('data,expected', [
         ('PascalCase', ['Pascal', 'Case']),
         ('camelCase', ['camel', 'Case']),
         ('Ucfirst', ['Ucfirst']),
@@ -40,7 +40,7 @@ class TestGetEnumChoices:
 
 class TestMultiCaseSplit:
     """Test cases for multi_case_split function"""
-    @pytest.mark.parametrize("data,expected", [
+    @pytest.mark.parametrize('data,expected', [
         ('PascalCase', ['Pascal', 'Case']),
         ('camelCase', ['camel', 'Case']),
         ('Ucfirst', ['Ucfirst']),
@@ -63,7 +63,7 @@ class TestMultiCaseSplit:
 
 class TestMakeVerboseName:
     """Test cases for the make_verbose_name function"""
-    @pytest.mark.parametrize("data,expect", [
+    @pytest.mark.parametrize('data,expect', [
         ('the-Name_here', 'The name here'),
     ])
     def test_called(self, data, expect):

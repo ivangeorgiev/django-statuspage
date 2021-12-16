@@ -6,7 +6,7 @@ from . import models
 
 
 class SystemFilter(admin.SimpleListFilter):
-    title = "system"
+    title = 'system'
     parameter_name = 'system'
 
     def lookups(self, request, model_admin):
