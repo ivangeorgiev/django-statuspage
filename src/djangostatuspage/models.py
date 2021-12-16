@@ -22,13 +22,13 @@ class IncidentSeverity(enum.Enum):
 
 
 class IncidentOrigin(enum.Enum):
-    """Define possible values for incident origin."""
+    """Possible values for incident origin."""
 
     MANUAL = "manual"
 
 
 class IncidentStatus(enum.Enum):
-    """Define possible values for incident status."""
+    """Possible values for incident status."""
 
     NEW = "new"
     ACKNOWLEDGED = "ack"
@@ -36,7 +36,7 @@ class IncidentStatus(enum.Enum):
 
 
 class IncidentMonitorStatus(enum.Enum):
-    """Define possible values for the monitor status of an incident."""
+    """Possible values for the monitor status of an incident."""
 
     FIRED = "fired"
     RESOLVED = "resolved"
