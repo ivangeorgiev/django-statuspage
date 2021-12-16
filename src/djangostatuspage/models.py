@@ -1,10 +1,12 @@
 import datetime
 import enum
+
 from django.db import models
-from . import config
-from . import shortcuts
+
+from . import config, shortcuts
 
 MAX_TIMESTAMP = datetime.datetime(3000, 1, 1).replace(tzinfo=datetime.timezone.utc)
+
 
 class IncidentSeverity(enum.Enum):
     CRITICAL = 'critical'
@@ -13,13 +15,16 @@ class IncidentSeverity(enum.Enum):
     INFORMATIONAL = 'information'
     VERBOSE = 'verbose'
 
+
 class IncidentOrigin(enum.Enum):
     MANUAL = 'manual'
+
 
 class IncidentStatus(enum.Enum):
     NEW = 'new'
     ACKNOWLEDGED = 'ack'
     CLOSED = 'closed'
+
 
 class IncidentMonitorStatus(enum.Enum):
     FIRED = 'fired'
@@ -41,11 +46,9 @@ class Incident(BaseModel):
     id_at_origin = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=1024, blank=True, null=True)
     created_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='incident_created_set'
-    )
+                                   related_name='incident_created_set')
     updated_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='incident_updated_set'
-    )
+                                   related_name='incident_updated_set')
 
     def __str__(self):
         return config.STR_TEMPLATE_INCIDENT.format(incident=self)
@@ -65,11 +68,9 @@ class IncidentUpdate(BaseModel):
     is_enabled = models.BooleanField(default=True, verbose_name='Enabled')
     effective_until = models.DateTimeField(default=MAX_TIMESTAMP)
     created_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='incident_update_created_set'
-    )
+                                   related_name='incident_update_created_set')
     updated_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='incident_update_updated_set'
-    )
+                                   related_name='incident_update_updated_set')
 
     def __str__(self):
         return config.STR_TEMPLATE_INCIDENT_UPDATE.format(update=self)
@@ -85,14 +86,13 @@ class System(BaseModel):
     is_visible = models.BooleanField(default=True, verbose_name='Visible')
     is_enabled = models.BooleanField(default=True, verbose_name='Enabled')
     created_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='system_created_set'
-    )
+                                   related_name='system_created_set')
     updated_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='system_updated_set'
-    )
+                                   related_name='system_updated_set')
 
     def __str__(self):
         return config.STR_TEMPLATE_SYSTEM.format(system=self)
+
 
 class SystemCategory(BaseModel):
     system_category_id = models.BigAutoField(primary_key=True, verbose_name='ID')
@@ -101,12 +101,9 @@ class SystemCategory(BaseModel):
     description = models.TextField(null=True, blank=True)
     is_visible = models.BooleanField(default=True, verbose_name='Visible')
     created_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='system_category_created_set'
-    )
+                                   related_name='system_category_created_set')
     updated_by = models.ForeignKey(config.USER_MODEL, null=True, on_delete=models.SET_NULL,
-            related_name='system_category_updated_set'
-    )
-
+                                   related_name='system_category_updated_set')
 
     def __str__(self):
         return config.STR_TEMPLATE_SYSTEM_CATEGORY.format(category=self)

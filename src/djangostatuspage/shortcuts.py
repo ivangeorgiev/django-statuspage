@@ -2,14 +2,16 @@ import datetime
 import itertools
 import re
 
+
 def camel_case_split(s: str):
     """Split camel (and pascal) case string into words"""
     start_idx = [0] + \
                 [i for i, e in enumerate(s)
-                   if e.isupper() and i>0 ]
+                 if e.isupper() and i > 0]
     start_idx.append(len(s))
 
     return [s[x: y] for x, y in zip(start_idx, start_idx[1:])]
+
 
 def get_enum_choices(enum):
     """Get list of choices suitable for Django Model from enum class"""
@@ -31,4 +33,3 @@ def multi_case_split(s: str, split_pattern='[_-]'):
 def utc_now():
     """Get current UTC time with timezone info"""
     return datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc)
-

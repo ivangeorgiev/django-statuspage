@@ -1,8 +1,6 @@
 from django.contrib import admin
 from django.db.models import Value
 from django.db.models.functions import Concat
-from django.db.models.query import QuerySet
-from django.http.request import HttpRequest
 
 from . import models
 
@@ -20,6 +18,7 @@ class SystemFilter(admin.SimpleListFilter):
             return queryset.filter(system_id=self.value())
         return queryset
 
+
 class UpdateUserAdmin(admin.ModelAdmin):
     def save_model(self, request, obj: models.BaseModel, *args, **kwargs):
         if not obj.pk:
@@ -28,6 +27,7 @@ class UpdateUserAdmin(admin.ModelAdmin):
             obj.updated_by = request.user
         super().save_model(request, obj, *args, **kwargs)
 
+
 class IncidentAdmin(UpdateUserAdmin):
     readonly_fields = ('created_by', 'updated_by', 'created_at', 'updated_at', )
     list_display = ('incident_id', 'title', 'origin', 'id_at_origin', 'created_at', 'created_by', )
@@ -35,7 +35,8 @@ class IncidentAdmin(UpdateUserAdmin):
 
 class IncidentUpdateAdmin(UpdateUserAdmin):
     readonly_fields = ('created_by', 'updated_by', 'created_at', 'updated_at', )
-    list_display = ('incident_update_id', 'incident_id', 'incident_title', 'system', 'title', 'status', 'monitor_status', 'created_at', 'effective_until', )
+    list_display = ('incident_update_id', 'incident_id', 'incident_title', 'system', 'title',
+                    'status', 'monitor_status', 'created_at', 'effective_until', )
     list_filter = ('status', 'monitor_status', SystemFilter)
     ordering = ('-created_at', 'incident')
 
@@ -45,6 +46,7 @@ class IncidentUpdateAdmin(UpdateUserAdmin):
     def system(self, obj):
         return obj.affected_system.name
 
+
 class SystemAdmin(UpdateUserAdmin):
     readonly_fields = ('created_by', 'updated_by', 'created_at', 'updated_at', )
     list_display = ('system_id', 'effective_rank', 'alias', 'category', 'name', 'is_visible', 'is_enabled',)
@@ -53,6 +55,7 @@ class SystemAdmin(UpdateUserAdmin):
     @admin.display(ordering=Concat('category__rank', Value(' '), 'rank'))
     def effective_rank(self, obj):
         return f'{obj.category.rank}-{obj.rank}'
+
 
 class SystemCategoryAdmin(UpdateUserAdmin):
     readonly_fields = ('created_by', 'updated_by', 'created_at', 'updated_at', )

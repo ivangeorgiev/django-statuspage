@@ -40,7 +40,7 @@ Create an empty branch for Github pages:
     git push -u origin gh-pages
 
 Default static files directory name ``_static`` is prefixed with underscore.
-Github publishes pages through ``jekyll`` which ignores directories which names 
+Github publishes pages through ``jekyll`` which ignores directories which names
 start with underscore. Just add empty ``.nojekyll`` file in the docs directory or
 the root of the ``gh-pages`` branch.
 
@@ -112,6 +112,3 @@ For example you need to use following in your ``.travis.yml``:
 
     script:
       - pytest src/djangostatuspage/tests --cov-report xml
-
-
-

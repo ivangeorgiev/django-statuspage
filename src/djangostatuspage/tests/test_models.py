@@ -1,8 +1,9 @@
 import pytest
-from djangostatuspage import models
-from djangostatuspage import config
+
+from djangostatuspage import config, models
 
 pytestmark = pytest.mark.unit
+
 
 @pytest.mark.django_db
 class TestIncident:
@@ -11,7 +12,8 @@ class TestIncident:
         config.STR_TEMPLATE_INCIDENT = '{incident.title} - 1234'
         incident = models.Incident(title='My Incident')
         assert str(incident) == 'My Incident - 1234'
-        
+
+
 @pytest.mark.django_db
 class TestIncidentUpdate:
 
@@ -39,6 +41,6 @@ class TestSystemCategory:
         assert str(category) == 'Core - cat'
 
 
-
-
-
+def test_authenticated(admin_client):
+    response = admin_client.get('/admin/')
+    assert response.status_code == 200

@@ -16,7 +16,9 @@
 
 import os
 import sys
+
 import django
+
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.insert(0, os.path.abspath('../src'))
 os.environ['DJANGO_SECRET_KEY'] = 'Not-so-secret'
@@ -41,10 +43,10 @@ release = '0.1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-	'sphinx.ext.intersphinx', 
-	'sphinx.ext.autodoc', 
-	'sphinx.ext.doctest',
-	'sphinx.ext.todo',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
+    'sphinx.ext.todo',
     'sphinx-prompt',
 ]
 

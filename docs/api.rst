@@ -7,4 +7,3 @@ Models
 
 .. automodule:: djangostatuspage.models
    :members:
-

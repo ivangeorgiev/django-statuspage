@@ -11,8 +11,8 @@ Practices
 Initialize Local Development Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can create a directory named ``.dev`` in your local repository copy and use it 
-for environment intialization purposes or store some resources that you need during 
+You can create a directory named ``.dev`` in your local repository copy and use it
+for environment intialization purposes or store some resources that you need during
 development. The ``.dev`` directory is already added to ``.gitignore``.
 
 Inisde the ``.dev`` directory create a ``set_env`` script to initialize environment variables
@@ -38,7 +38,7 @@ And also an example of Windows commdnd file ``set_env.cmd``:
 Tokens and Secrets in Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Security tokens and secrets should be stored in environment variables. 
+Security tokens and secrets should be stored in environment variables.
 Hardcoded secrets are not allowed.
 
 .. code-block:: python
@@ -48,11 +48,11 @@ Hardcoded secrets are not allowed.
     SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 Do not use default value when reading the environment variable to enforce target
-environment to define the variable and avoid security issues. For local development, 
+environment to define the variable and avoid security issues. For local development,
 add the initializaition of the variables to your ``.dev/set_env`` script:
 
 .. code-block:: bash
-    
+
     export DJANGO_SECRET_KEY="Very, Very Secret Key. Do not tell anybody!"
 
 
@@ -76,7 +76,7 @@ Group related test cases into a test class. For example, to test the ``camel_cas
 Define test type for each test case
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Test cases are grouped by test type (unit, system, etc.). To group tests `pytest marks` are used. 
+Test cases are grouped by test type (unit, system, etc.). To group tests `pytest marks` are used.
 Each test case can be marked with zero, one or more marks.
 
 Following marks are registered in ``pytest.ini``:
@@ -99,15 +99,15 @@ To mark individual test cases, use the ``@pytest.mark`` decorator:
 If ``@pytest.mark`` decorator is applied to a class, all the test cases from the class are marked with the
 mark.
 
-To mark all tests in a module define pytestmark module variable and assign to a mark or 
+To mark all tests in a module define pytestmark module variable and assign to a mark or
 a list of marks:
 
 .. code-block:: python
 
-    pytestmark = pytest.mark.unit    # All test cases in the module 
+    pytestmark = pytest.mark.unit    # All test cases in the module
                                      # are marked as unit test cases
 
-    pytestmark = [pytest.mark.unit, pytest.mark.compat]  # All test cases in the module 
+    pytestmark = [pytest.mark.unit, pytest.mark.compat]  # All test cases in the module
                                                          # are marked as unit and compat test cases
 
 
@@ -153,7 +153,7 @@ Measure the test coverage on each test execution. Add corresponding options to `
 
     # pytest.ini
     [pytest]
-    addopts = 
+    addopts =
         -m "unit"
         --cov djangostatuspage
         --cov-report term
@@ -196,6 +196,3 @@ Test Django Applications with Database
 1. Use in-memory database
 2. Use pytest-django
 3. Mark test cases or test class which use database with ``@pytest.mark.django_db``
-
-
-
