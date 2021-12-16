@@ -1,4 +1,4 @@
-"""Various useful function."""
+"""Various useful functions."""
 
 import datetime
 import itertools
