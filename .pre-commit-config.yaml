@@ -23,3 +23,7 @@ repos:
   rev: v7.32.0
   hooks:
     - id: eslint
+- repo: https://github.com/psf/black
+  rev: 21.12b0
+  hooks:
+    - id: black
