@@ -8,6 +8,7 @@ from django.db import models
 from . import config, shortcuts
 
 MAX_TIMESTAMP = datetime.datetime(3000, 1, 1).replace(tzinfo=datetime.timezone.utc)
+"""Timestamp indicating open record for models with validity range (e.g. valid_from, valid_until)."""
 
 
 class IncidentSeverity(enum.Enum):
