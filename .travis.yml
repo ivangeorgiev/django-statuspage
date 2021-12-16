@@ -15,4 +15,5 @@ install:
   - pip install -r requirements.txt
 
 script:
+  - pre-commit run --all-files
   - pytest src/djangostatuspage/tests --cov-report xml
