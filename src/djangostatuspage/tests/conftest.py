@@ -1,3 +1,5 @@
+"""Pytest plugin for djangostatuspage testing."""
+
 import os
 import sys
 from pathlib import Path
@@ -10,5 +12,6 @@ sys.path.insert(0, BASE_DIR.absolute())
 
 
 def pytest_configure():
+    """Configure pytest - pytest hook."""
     os.environ['DJANGO_SETTINGS_MODULE'] = 'djangostatuspage.tests.mystatuspage.settings_test'
     django.setup()

@@ -1,3 +1,5 @@
+"""Django settings for testing."""
+
 import os
 
 os.environ['DJANGO_SECRET_KEY'] = 'secret-key'

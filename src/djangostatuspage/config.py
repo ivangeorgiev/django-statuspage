@@ -1,3 +1,5 @@
+"""Configuration settings for djangostatuspage plugin."""
+
 from django.contrib.auth.models import User
 
 # Define templates for __str__ methods of models

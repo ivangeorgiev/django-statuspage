@@ -1,3 +1,5 @@
+"""Test cases for djangostatuspage.shortcuts module."""
+
 import datetime
 import enum
 import unittest
@@ -11,7 +13,8 @@ pytestmark = [pytest.mark.unit]
 
 
 class TestCamelCaseSplit:
-    """Test cases for camel_case_split function"""
+    """Test cases for camel_case_split function."""
+
     @pytest.mark.parametrize('data,expected', [
         ('PascalCase', ['Pascal', 'Case']),
         ('camelCase', ['camel', 'Case']),
@@ -21,17 +24,22 @@ class TestCamelCaseSplit:
         ('ABBR', ['A', 'B', 'B', 'R']),
     ])
     def test_called_with(self, data, expected):
+        """Verify result when called in various scenarios."""
         result = shortcuts.camel_case_split(data)
         assert result == expected
 
 
 class TestGetEnumChoices:
-    """Test cases for get_enum_choices function"""
+    """Test cases for get_enum_choices function."""
+
     class MyEnum(enum.Enum):
+        """Enum to test with."""
+
         OPTION_1 = 1
         OPTION_2 = 2
 
     def test_called(self):
+        """Verify returns expected result when called."""
         data = self.MyEnum
         expect = [(1, 'Option 1'), (2, 'Option 2')]
         result = shortcuts.get_enum_choices(data)
@@ -39,7 +47,8 @@ class TestGetEnumChoices:
 
 
 class TestMultiCaseSplit:
-    """Test cases for multi_case_split function"""
+    """Test cases for multi_case_split function."""
+
     @pytest.mark.parametrize('data,expected', [
         ('PascalCase', ['Pascal', 'Case']),
         ('camelCase', ['camel', 'Case']),
@@ -53,28 +62,29 @@ class TestMultiCaseSplit:
         ('-stripped-empty---Between-', ['stripped', 'empty', 'Between']),
     ])
     def test_called_with(self, data, expected):
+        """Verify result when called in various scenarios."""
         result = shortcuts.multi_case_split(data)
         assert result == expected
 
-    def test_name(self):
-        parts = shortcuts.multi_case_split('Manual')
-        assert 'Manual' == ' '.join(parts).lower().capitalize()
-
 
 class TestMakeVerboseName:
-    """Test cases for the make_verbose_name function"""
+    """Test cases for the make_verbose_name function."""
+
     @pytest.mark.parametrize('data,expect', [
         ('the-Name_here', 'The name here'),
     ])
     def test_called(self, data, expect):
+        """Verify result when called in various scenarios."""
         result = shortcuts.make_verbose_name(data)
         assert result == expect
 
 
 class TestUtcNow(unittest.TestCase):
-    """Test cases for the utc_now function"""
+    """Test cases for the utc_now function."""
+
     @mock.patch('datetime.datetime')
     def test_returns_result_from_datetime_replace(self, dt_mock):
+        """Verify function calls proper chain of methods and returns timezone replace result."""
         utcnow_mock = mock.Mock()
         replace_mock = mock.Mock()
         expect_result = mock.Mock()
