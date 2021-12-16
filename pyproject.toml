@@ -1,17 +1,16 @@
+# FILE: -- pyproject.toml
+
 [tool.black]
-line-length = 90
-py36 = true
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-| \.mypy_cache
-| \.tox
-| \.venv
-| _build
-| migrations/
-| tests/manage\.py
-| build
-| dist
-)/
-'''
+line-length = 119
+force-exclude = '''\.git
+|\.mypy_cache
+|\.tox
+|\.venv
+|_build/
+|build/
+|dist/
+|docs/
+|migrations/
+|tests/manage.py
+|/asgi.py
+|/wsgi.py'''
