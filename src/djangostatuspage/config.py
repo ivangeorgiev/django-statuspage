@@ -9,6 +9,8 @@ STR_TEMPLATE_INCIDENT_UPDATE = "{update.title}"
 STR_TEMPLATE_SYSTEM = "{system.category.name} - {system.name} ({system.alias})"
 STR_TEMPLATE_SYSTEM_CATEGORY = "{category.name}"
 
+ADMIN_URL = "sp-admin/"
+
 ADMIN_SITE_HEADER = admin.site.site_header
 ADMIN_SITE_TITLE = admin.site.site_title
 ADMIN_INDEX_TITLE = admin.site.index_title

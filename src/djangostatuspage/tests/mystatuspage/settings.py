@@ -131,4 +131,5 @@ DJANGO_STATUSPAGE = {
     "ADMIN_SITE_HEADER": "TEST: MySite Admin",
     "ADMIN_SITE_TITLE": "TEST: Status Page",
     "ADMIN_INDEX_TITLE": "TEST: Administration",
+    "ADMIN_URL": "destroy/",
 }

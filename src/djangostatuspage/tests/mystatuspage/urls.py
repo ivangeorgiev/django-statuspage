@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from djangostatuspage import config
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path(config.ADMIN_URL, admin.site.urls),
 ]

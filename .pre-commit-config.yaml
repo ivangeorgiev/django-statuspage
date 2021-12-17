@@ -7,7 +7,7 @@ repos:
         name: check for commit message
         language: pygrep
         entry: '\A(BREAKING|NEW|IMPROVE|FIX|DOCS|MAINTAIN|TEST|RELEASE|UPGRADE|REFACTOR|DEPRECATE|MERGE|OTHER): .{1,72}(\n|\Z)'
-        args: [--negate, --multiline]
+        args: [--negate, --multiline, --ignore-case]
         stages: [commit-msg]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
