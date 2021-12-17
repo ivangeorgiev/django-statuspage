@@ -4,7 +4,13 @@ from django.contrib import admin
 from django.db.models import Value
 from django.db.models.functions import Concat
 
-from . import models
+from . import config, models
+
+site = admin.site
+
+site.site_header = config.ADMIN_SITE_HEADER
+site.site_title = config.ADMIN_SITE_TITLE
+site.index_title = config.ADMIN_INDEX_TITLE
 
 
 class SystemFilter(admin.SimpleListFilter):

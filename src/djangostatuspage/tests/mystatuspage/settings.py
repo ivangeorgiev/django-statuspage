@@ -125,3 +125,10 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+DJANGO_STATUSPAGE = {
+    "ADMIN_SITE_HEADER": "TEST: MySite Admin",
+    "ADMIN_SITE_TITLE": "TEST: Status Page",
+    "ADMIN_INDEX_TITLE": "TEST: Administration",
+}
