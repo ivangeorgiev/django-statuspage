@@ -141,7 +141,33 @@ class SystemCategoryAdmin(UpdateUserAdmin):
     ordering = ("name",)
 
 
+class StatusPageAdmin(UpdateUserAdmin):
+    """Admin for Status Page model."""
+
+    readonly_fields = (
+        "created_by",
+        "updated_by",
+        "created_at",
+        "updated_at",
+    )
+    list_display = (
+        "title",
+        "created_by",
+        "updated_by",
+        "updated_at",
+    )
+
+    def has_add_permission(self, *args, **kwargs):
+        """Disable StatusPage object creation from the UI."""
+        return False
+
+    def has_delete_permission(self, *args, **kwargs):
+        """Disable StatusPage object deletion from the UI."""
+        return False
+
+
 admin.site.register(models.Incident, IncidentAdmin)
+admin.site.register(models.StatusPage, StatusPageAdmin)
 admin.site.register(models.System, SystemAdmin)
 admin.site.register(models.SystemCategory, SystemCategoryAdmin)
 admin.site.register(models.IncidentUpdate, IncidentUpdateAdmin)

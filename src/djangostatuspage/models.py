@@ -3,12 +3,16 @@
 import datetime
 import enum
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 from . import config, shortcuts
 
 MAX_TIMESTAMP = datetime.datetime(3000, 1, 1).replace(tzinfo=datetime.timezone.utc)
 """Timestamp indicating open record for models with validity range (e.g. valid_from, valid_until)."""
+
+
+DoesNotExistError = ObjectDoesNotExist
 
 
 class IncidentSeverity(enum.Enum):
@@ -126,7 +130,7 @@ class System(BaseModel):
 class SystemCategory(BaseModel):
     """Define a list of system categories."""
 
-    system_category_id = models.BigAutoField(primary_key=True, verbose_name="ID")
+    system_category_id = models.BigAutoField(primary_key=True, verbose_name="id")
     name = models.CharField(max_length=255)
     rank = models.IntegerField(default=0)
     description = models.TextField(null=True, blank=True)
@@ -146,3 +150,21 @@ class SystemCategory(BaseModel):
         """Model meta."""
 
         verbose_name_plural = "system categories"
+
+
+class StatusPage(BaseModel):
+    """Status page settings."""
+
+    status_page_id = models.BigAutoField(primary_key=True, verbose_name="id")
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    created_by = models.ForeignKey(
+        config.USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="status_page_created_set"
+    )
+    updated_by = models.ForeignKey(
+        config.USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="status_page_updated_set"
+    )
+
+    def __str__(self):
+        """Get string representation of the object."""
+        return config.STR_TEMPLATE_STATUS_PAGE.format(status_page=self)

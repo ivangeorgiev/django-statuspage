@@ -4,13 +4,14 @@ import pytest
 
 from djangostatuspage import config, models
 
-pytestmark = pytest.mark.unit
+pytestmark = pytest.mark.all
 
 
 @pytest.mark.django_db
 class TestIncident:
     """Test cases for testing the Incident model."""
 
+    @pytest.mark.unit
     def test_str(self):
         """Verify string correct string representation of the model."""
         config.STR_TEMPLATE_INCIDENT = "{incident.title} - 1234"
@@ -22,6 +23,7 @@ class TestIncident:
 class TestIncidentUpdate:
     """Test cases for testing the IncidentUpdate model."""
 
+    @pytest.mark.unit
     def test_str(self):
         """Verify string correct string representation of the model."""
         config.STR_TEMPLATE_INCIDENT_UPDATE = "{update.title} - abcd"
@@ -33,6 +35,7 @@ class TestIncidentUpdate:
 class TestSystem:
     """Test cases for testing the System model."""
 
+    @pytest.mark.unit
     def test_str(self):
         """Verify string correct string representation of the model."""
         config.STR_TEMPLATE_SYSTEM = "{system.name} - sys"
@@ -44,8 +47,21 @@ class TestSystem:
 class TestSystemCategory:
     """Test cases for testing the SystemCategory model."""
 
+    @pytest.mark.unit
     def test_str(self):
         """Verify string correct string representation of the model."""
         config.STR_TEMPLATE_SYSTEM_CATEGORY = "{category.name} - cat"
         category = models.SystemCategory(name="Core")
         assert str(category) == "Core - cat"
+
+
+@pytest.mark.django_db
+class TestStatusPage:
+    """Test cases for testing the SystemCategory model."""
+
+    @pytest.mark.unit
+    def test_str(self):
+        """Verify string correct string representation of the model."""
+        config.STR_TEMPLATE_STATUS_PAGE = "{status_page.title} - sp"
+        category = models.StatusPage(title="ThePage")
+        assert str(category) == "ThePage - sp"
