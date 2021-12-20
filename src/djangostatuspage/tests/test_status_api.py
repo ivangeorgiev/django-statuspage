@@ -4,6 +4,8 @@ import pytest
 
 from djangostatuspage import models, services
 
+DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
+
 pytestmark = [pytest.mark.all, pytest.mark.unit]
 
 
@@ -138,6 +140,7 @@ class TestStatusApi:
         assert result_1["monitor_status"] == upd_1.monitor_status
         assert result_1["is_enabled"] == upd_1.is_enabled
         assert result_1["is_visible"] == upd_1.is_visible
+        assert result_1["last_update"] == upd_1.updated_at.strftime(DATETIME_FORMAT)
         #
         result_2 = actual_2["results"][1]
         upd_2 = test_data["upd_2"]
