@@ -5,8 +5,16 @@ import pytest
 from djangostatuspage import models, services
 
 DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
+STATUS_ENDPOINT_URL = "/api/status/"
 
 pytestmark = [pytest.mark.all, pytest.mark.unit]
+
+
+@pytest.fixture
+def response(client, test_data):
+    """Get status info from status API endpoint."""
+    response = client.get(STATUS_ENDPOINT_URL).json()[0]
+    return response
 
 
 @pytest.fixture
@@ -52,6 +60,7 @@ def test_data():
         "inc_2": inc_2,
         "upd_2": upd_2,
     }
+    print("TEST DATA ======================")
     return ctx
 
 
@@ -61,19 +70,17 @@ class TestStatusApi:
 
     def test_endpoint_exists_and_returns_result(self, client):
         """Verify that endpoint returns success."""
-        response = client.get("/api/status/")
+        response = client.get(STATUS_ENDPOINT_URL)
         assert response.status_code == 200
 
-    def test_response_contains_page_details(self, client):
+    def test_response_contains_page_details(self, response):
         """Verify that endpoint returns status page details."""
         sp = services.get_status_page()
-        response = client.get("/api/status/").json()[0]
         assert sp.title == response["title"]
         assert sp.description == response["description"]
 
-    def test_response_contains_categories(self, client, test_data):
+    def test_response_contains_categories(self, response, test_data):
         """Verify that endpoint returns categories ordered by rank."""
-        response = client.get("/api/status/").json()[0]
         assert len(response["categories"]) == 2
         #
         actual_cat_1 = response["categories"][0]
@@ -91,9 +98,8 @@ class TestStatusApi:
         assert actual_cat_2["is_visible"] == expect_cat_2.is_visible
         assert "systems" in actual_cat_2
 
-    def test_response_contains_systems(self, client, test_data):
+    def test_response_contains_systems(self, response, test_data):
         """Verify that endpoint returns systems ordered by rank."""
-        response = client.get("/api/status/").json()[0]
         systems = response["categories"][1]["systems"]
         #
         assert len(systems) == 2
@@ -118,10 +124,8 @@ class TestStatusApi:
         assert actual_sys_2["is_enabled"] == expect_sys_2.is_enabled
         assert "active_incidents" in actual_sys_2
 
-    def test_response_active_incidents_results(self, client, test_data):
+    def test_response_active_incidents_results(self, response, test_data):
         """Verify correctness of categories[*].systems[*].active_incidents.results[*]."""
-        response = client.get("/api/status/").json()[0]
-        #
         actual_1 = response["categories"][1]["systems"][0]["active_incidents"]
         assert "results" in actual_1
         assert actual_1["results"] == []
@@ -146,10 +150,8 @@ class TestStatusApi:
         upd_2 = test_data["upd_2"]
         assert result_2["id"] == upd_2.incident_id
 
-    def test_response_active_incidents_counts(self, client, test_data):
+    def test_response_active_incidents_counts(self, response):
         """Verify correctness of categories[*].systems[*].active_incidents.counts[*]."""
-        response = client.get("/api/status/").json()[0]
-        #
         assert "counts" in response["categories"][1]["systems"][0]["active_incidents"]
         #
         counts_1 = response["categories"][1]["systems"][0]["active_incidents"]["counts"]
