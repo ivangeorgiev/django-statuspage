@@ -92,6 +92,7 @@ class ActiveIncidentsSerializer(serializers.Serializer):
         incidents = [serializer(inc).data for inc in updates]
         counts = IncidentCountsSerializer().to_representation(updates)
         highest_severity = None
+        # We could iterate over counts["severity"].items(), but order of keys is not guaranteed.
         for severity in models.IncidentSeverity:
             count = counts["severity"][severity.value]
             if count > 0:
