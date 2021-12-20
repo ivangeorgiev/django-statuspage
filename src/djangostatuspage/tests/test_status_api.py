@@ -31,6 +31,18 @@ class TestStatusApi:
         cat_2.save()
         response = client.get("/api/status/").json()[0]
         assert response["categories"] == [
-            {"id": cat_2.system_category_id, "name": "query", "description": "query systems", "is_visible": True},
-            {"id": cat_1.system_category_id, "name": "core", "description": "core systems", "is_visible": True},
+            {
+                "id": cat_2.system_category_id,
+                "name": "query",
+                "description": "query systems",
+                "is_visible": True,
+                "systems": [],
+            },
+            {
+                "id": cat_1.system_category_id,
+                "name": "core",
+                "description": "core systems",
+                "is_visible": True,
+                "systems": [],
+            },
         ]
