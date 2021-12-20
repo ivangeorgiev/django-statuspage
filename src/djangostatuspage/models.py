@@ -87,7 +87,9 @@ class IncidentUpdate(BaseModel):
     technical_details = models.TextField(blank=True, null=True, default="")
     severity = models.TextField(max_length=32, choices=shortcuts.get_enum_choices(IncidentSeverity))
     status = models.CharField(max_length=32, choices=shortcuts.get_enum_choices(IncidentStatus))
-    affected_system = models.ForeignKey("System", null=True, default=None, blank=True, on_delete=models.CASCADE)
+    affected_system = models.ForeignKey(
+        "System", null=True, related_name="incident_updates", default=None, blank=True, on_delete=models.CASCADE
+    )
     monitor_status = models.CharField(max_length=32, choices=shortcuts.get_enum_choices(IncidentMonitorStatus))
     is_visible = models.BooleanField(default=True, verbose_name="Visible")
     is_enabled = models.BooleanField(default=True, verbose_name="Enabled")

@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from djangostatuspage import config
+from djangostatuspage import config, views
 
 urlpatterns = [
     path(config.ADMIN_URL, admin.site.urls),
+    path("api/status/", views.StatusPageView.as_view(), name="staus"),
 ]
