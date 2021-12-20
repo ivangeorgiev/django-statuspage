@@ -140,7 +140,7 @@ class TestStatusApi:
     def test_response_active_incidents_highest_severity(self, response):
         """Verify correctness of categories[*].systems[*].active_incidents.highest_severity."""
         assert response["categories"][1]["systems"][0]["active_incidents"]["highest_severity"] is None
-        assert response["categories"][1]["systems"][0]["active_incidents"]["highest_severity"] == "critical"
+        assert response["categories"][1]["systems"][1]["active_incidents"]["highest_severity"] == "critical"
 
     def test_response_active_incidents_results(self, response, test_data):
         """Verify correctness of categories[*].systems[*].active_incidents.results[*]."""
