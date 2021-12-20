@@ -50,6 +50,17 @@ def test_data():
     )
     inc_2.save()
     upd_2.save()
+    inc_3 = models.Incident(title="inc-3")
+    upd_3 = models.IncidentUpdate(
+        incident=inc_3,
+        title="update-3",
+        status="ack",
+        severity="information",
+        monitor_status="fired",
+        affected_system=sys_1,
+    )
+    inc_3.save()
+    upd_3.save()
     ctx = {
         "cat_1": cat_1,
         "cat_2": cat_2,
@@ -59,6 +70,8 @@ def test_data():
         "upd_1": upd_1,
         "inc_2": inc_2,
         "upd_2": upd_2,
+        "inc_3": inc_3,
+        "upd_3": upd_3,
     }
     print("TEST DATA ======================")
     return ctx
@@ -124,6 +137,11 @@ class TestStatusApi:
         assert actual_sys_2["is_enabled"] == expect_sys_2.is_enabled
         assert "active_incidents" in actual_sys_2
 
+    def test_response_active_incidents_highest_severity(self, response):
+        """Verify correctness of categories[*].systems[*].active_incidents.highest_severity."""
+        assert response["categories"][1]["systems"][0]["active_incidents"]["highest_severity"] is None
+        assert response["categories"][1]["systems"][0]["active_incidents"]["highest_severity"] == "critical"
+
     def test_response_active_incidents_results(self, response, test_data):
         """Verify correctness of categories[*].systems[*].active_incidents.results[*]."""
         actual_1 = response["categories"][1]["systems"][0]["active_incidents"]
@@ -132,7 +150,7 @@ class TestStatusApi:
         #
         actual_2 = response["categories"][1]["systems"][1]["active_incidents"]
         assert "results" in actual_2
-        assert len(actual_2["results"]) == 2
+        assert len(actual_2["results"]) == 3
         #
         result_1 = actual_2["results"][0]
         upd_1 = test_data["upd_1"]
@@ -163,7 +181,7 @@ class TestStatusApi:
         #
         counts_2 = response["categories"][1]["systems"][1]["active_incidents"]["counts"]
         assert counts_2 == {
-            "severity": {"critical": 1, "error": 1, "warning": 0, "information": 0, "verbose": 0},
-            "status": {"new": 1, "ack": 1, "closed": 0},
-            "monitor_status": {"fired": 1, "resolved": 1},
+            "severity": {"critical": 1, "error": 1, "warning": 0, "information": 1, "verbose": 0},
+            "status": {"new": 1, "ack": 2, "closed": 0},
+            "monitor_status": {"fired": 2, "resolved": 1},
         }

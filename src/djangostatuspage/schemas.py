@@ -50,7 +50,11 @@ class IncidentCountsSerializer(serializers.Serializer):
         monitor_counts = {e.value: 0 for e in models.IncidentMonitorStatus}
         for s in updates.values("monitor_status").annotate(count=Count("*")):
             monitor_counts[s["monitor_status"]] = s["count"]
-        result = {"severity": severity_counts, "status": status_counts, "monitor_status": monitor_counts}
+        result = {
+            "severity": severity_counts,
+            "status": status_counts,
+            "monitor_status": monitor_counts,
+        }
         return result
 
 
@@ -86,9 +90,17 @@ class ActiveIncidentsSerializer(serializers.Serializer):
         """Get representation from IncidentUpdate QuerySet."""
         serializer = ActiveIncidentSerializer
         incidents = [serializer(inc).data for inc in updates]
+        counts = IncidentCountsSerializer().to_representation(updates)
+        highest_severity = None
+        for severity in models.IncidentSeverity:
+            count = counts["severity"][severity.value]
+            if count > 0:
+                highest_severity = severity.value
+                break
         result = {
+            "highest_severity": highest_severity,
             "results": incidents,
-            "counts": IncidentCountsSerializer().to_representation(updates),
+            "counts": counts,
         }
         return result
 
